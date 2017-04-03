@@ -26,5 +26,8 @@
     <Setting Name="TcpServerPort" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">3000</Value>
     </Setting>
+    <Setting Name="AllowControl" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -75,7 +75,8 @@ namespace RRLightProgram
         /// 
         private void server_OnDataAvailable(tcpServer.TcpServerConnection connection)
         {
-            var TCPSMCommands = new Dictionary<string, Input >(StringComparer.OrdinalIgnoreCase)
+
+                var TCPSMCommands = new Dictionary<string, Input>(StringComparer.OrdinalIgnoreCase)
             {
                 { "START", Input.CommandStart },
                 { "STOP", Input.CommandStop },
@@ -84,35 +85,45 @@ namespace RRLightProgram
 
             };
 
-            byte[] data = readStream(connection.Socket);
+                byte[] data = readStream(connection.Socket);
 
-            if (data != null)
-            {
-                // Remove line endings
-                string dataStr = Encoding.ASCII.GetString(data).TrimEnd('\n','\r');
+                if (data != null)
+                {
+                    // Remove line endings
+                    string dataStr = Encoding.ASCII.GetString(data).TrimEnd('\n', '\r');
 
-                Input inputCommand = Input.None;
+                    Input inputCommand = Input.None;
 
-                Trace.TraceInformation(DateTime.Now + ": TCP - Rx: " + dataStr);
-                Trace.Flush();
+                    Trace.TraceInformation(DateTime.Now + ": TCP - Rx: " + dataStr);
+                    Trace.Flush();
 
                 //Fire the command event.
+
                 if (this.stateMachine != null && TCPSMCommands.TryGetValue(dataStr, out inputCommand))
                 {
 
-                    this.stateMachine.PostInput(inputCommand);
-                    
+                    // Check the application settings to see if control is enabled. If not, trace and do nothing.
+
+                    if (Properties.Settings.Default.AllowControl)
+                        {
+                            this.stateMachine.PostInput(inputCommand);
+                        }
+                    else
+                        {
+                            Trace.TraceInformation(DateTime.Now + ": Control functionality disabled. Command ignored.");
+                        }
+
                 }
                 else
                 {
-                    Trace.TraceInformation(DateTime.Now + ": TCP - Command '{0}' not found", dataStr);
-                    Trace.Flush();
+                        Trace.TraceInformation(DateTime.Now + ": TCP - Command '{0}' not found", dataStr);
+                        Trace.Flush();
 
-                    TcpSend("TCP-Error: Command not found: " + dataStr);
+                        TcpSend("TCP-Error: Command not found: " + dataStr);
                 }
 
 
-            }
+                }
 
         }
 

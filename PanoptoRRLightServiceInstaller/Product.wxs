@@ -25,6 +25,9 @@
       <Component Id="RemoteRecorderAPI.dll" Guid="1B9244CE-96F8-4104-B466-28E033C855E1">
         <File Id="RemoteRecorderAPI.dll" Name="RemoteRecorderAPI.dll" Source="..\PanoptoRRLightService\bin\x86\Release\RemoteRecorderAPI.dll" Vital="yes" KeyPath="no" DiskId="1"/>
       </Component>
+      <Component Id="RRLightService.exe.config" Guid="52156ADF-1438-4998-883B-AEBAA4C8C712">
+        <File Id="RRLightService.exe.config" Name="RRLightService.exe.config" Source="..\PanoptoRRLightService\bin\x86\Release\RRLightService.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
+      </Component>
       <Component Id="DelcomDLL.dll" Guid="4C511B72-823E-4B97-B727-8C5FA2DF8DE5">
         <File Id="DelcomDLL.dll" Name="DelcomDLL.dll" Source="..\PanoptoRRLightService\bin\x86\Release\DelcomDLL.dll" Vital="yes" KeyPath="no" DiskId="1"/>
       </Component>

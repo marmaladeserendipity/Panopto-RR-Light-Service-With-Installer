@@ -94,5 +94,14 @@ namespace RRLightProgram.Properties {
                 return ((int)(this["TcpServerPort"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AllowControl {
+            get {
+                return ((bool)(this["AllowControl"]));
+            }
+        }
     }
 }
